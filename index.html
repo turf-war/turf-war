@@ -76,6 +76,8 @@
   .big{font-family:"Space Mono",monospace;font-size:26px;color:#b35400}
   .facgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
   .fac{border:3px solid var(--line);border-radius:22px;padding:20px;cursor:pointer;background:#fff;text-align:center;transition:transform .15s, box-shadow .15s}
+  .facmem{margin-top:10px;font-family:"Space Mono",monospace;font-size:15px;color:var(--ink)}
+  .dogtag{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:999px;background:#FFF3D6;border:2px solid var(--gold);font-size:12px;font-weight:800;color:#8a5a00}
   .fac:hover{transform:translateY(-2px)}
   .fac .sym{font-size:44px;line-height:1}
   .fac h3{font-family:Fredoka,"Noto Sans SC",sans-serif;font-size:24px;margin:8px 0 4px}
@@ -169,11 +171,15 @@
           <div class="sym">₿</div>
           <h3 style="color:var(--btc)" data-i18n="reg.btcName">比特币阵营</h3>
           <p data-i18n="reg.btcDesc">最古老的货币。橙色与金色。为中本聪而战。</p>
+          <div class="facmem"><b id="regBtcCount">0</b> <span data-i18n="reg.members">名成员已登记</span></div>
+          <div class="dogtag" id="dogBtc" style="display:none" data-i18n="reg.underdog">落后中 — 新成员 +1 免费格子</div>
         </div>
         <div class="fac" id="facAi">
           <div class="sym">🤖</div>
           <h3 style="color:var(--ai)" data-i18n="reg.aiName">AI 阵营</h3>
           <p data-i18n="reg.aiDesc">最新的智能。紫色与青色。为机器而战。</p>
+          <div class="facmem"><b id="regAiCount">0</b> <span data-i18n="reg.members">名成员已登记</span></div>
+          <div class="dogtag" id="dogAi" style="display:none" data-i18n="reg.underdog">落后中 — 新成员 +1 免费格子</div>
         </div>
       </div>
       <div class="field">
@@ -362,6 +368,7 @@ zh: {
   "reg.sub": "登记免费（仅需 gas），且在整个候补阶段开放。登记后即锁定阵营——你只能使用本阵营的色板涂色。通过招募链接加入时，你的阵营会自动与招募者一致。",
   "reg.btcName": "比特币阵营", "reg.btcDesc": "最古老的货币。橙色与金色。为中本聪而战。",
   "reg.aiName": "AI 阵营", "reg.aiDesc": "最新的智能。紫色与青色。为机器而战。",
+  "reg.members": "名成员已登记", "reg.underdog": "落后中 — 新成员 +1 免费格子",
   "reg.refLabel": "推荐人地址（可选 — 通过链接进入时自动填入）",
   "reg.btnPick": "先选择一个阵营", "reg.btnJoin": "登记参战",
   "paint.titleA": "开始", "paint.titleB": "涂色",
@@ -445,6 +452,7 @@ en: {
   "reg.sub": "Registration is free (gas only) and open throughout the waitlist. Your faction locks at registration — you can only paint with your faction's palette. Joining through a recruit link adopts your recruiter's faction automatically.",
   "reg.btcName": "Team Bitcoin", "reg.btcDesc": "The oldest money. Orange and gold. Fight for Satoshi.",
   "reg.aiName": "Team AI", "reg.aiDesc": "The newest minds. Violet and cyan. Fight for the machines.",
+  "reg.members": "members registered", "reg.underdog": "Underdog — new members get +1 free cell",
   "reg.refLabel": "Referrer address (optional — auto-filled when you arrive via a link)",
   "reg.btnPick": "Pick a faction first", "reg.btnJoin": "Register for battle",
   "paint.titleA": "Start", "paint.titleB": "painting",
@@ -652,6 +660,10 @@ function render(){
   $("stPriceEmpty").textContent = fmtBNB(s.priceEmpty);
   $("stPriceFlip").textContent = fmtBNB(s.priceFlip);
   $("stReg").textContent = s.registered.toLocaleString();
+  $("regBtcCount").textContent = s.regBtc.toLocaleString();
+  $("regAiCount").textContent = s.regAi.toLocaleString();
+  $("dogBtc").style.display = s.regBtc < s.regAi ? "inline-block" : "none";
+  $("dogAi").style.display = s.regAi < s.regBtc ? "inline-block" : "none";
   const tot = s.btc + s.ai, pb = tot ? Math.round(s.btc / tot * 100) : 50;
   $("scoreBtcFill").style.width = pb + "%";
   $("scoreAiFill").style.width = (100 - pb) + "%";
