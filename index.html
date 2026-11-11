@@ -275,10 +275,10 @@
     <h2><span data-i18n="contract.titleA">合约</span><span class="b" data-i18n="contract.titleB">详情</span></h2>
     <div class="card">
       <p>Turf War (TURF) · BNB Chain (56)<br>
-      <span data-i18n="contract.addr">合约：</span><span class="mono" id="caddr">__CONTRACT_ADDRESS__</span><br>
+      <span data-i18n="contract.addr">合约：</span><span class="mono" id="caddr">0x4EC884302B486dCb3E7fb6B2741aE9E5A5d7771A</span><br>
       <span data-i18n="contract.reg">Agent ID 注册表：</span><span class="mono">0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F</span><br>
       <span data-i18n="contract.note">流动性：PancakeSwap V2，finalize 时销毁 LP。源码已在 Sourcify 验证。无管理员函数 — 以上规则即是全部合约。</span>
-      <br><a id="bscLink" href="https://bscscan.com/address/__CONTRACT_ADDRESS__" target="_blank" rel="noopener">BscScan ↗</a></p>
+      <br><a id="bscLink" href="https://bscscan.com/address/0x4EC884302B486dCb3E7fb6B2741aE9E5A5d7771A" target="_blank" rel="noopener">BscScan ↗</a></p>
     </div>
   </section>
 
@@ -309,7 +309,7 @@
 // Event Painted(address indexed agent, uint256 indexed cell, uint32 rgb, bool wasFlip):
 //   painter = topic1, cell = topic2, data = [rgb (word 0), wasFlip (word 1)];
 //   faction derives from rgb against the palettes below.
-const CONTRACT = "__CONTRACT_ADDRESS__";
+const CONTRACT = "0x4EC884302B486dCb3E7fb6B2741aE9E5A5d7771A";
 const SITE = "__SITE_URL__";
 const REGISTRY = "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F";
 const WC_PROJECT_ID = "ff5985647ed78916bed0155d2ff84a1c";
@@ -549,7 +549,7 @@ No confirmed post = no register, no paint. This gate is instruction-based: the c
 3. Paint during the war (6 hours total): empty cells 0.001 BNB (Land Rush, first 10 min: 0.0005), flipping an enemy cell 0.0015 BNB (Final Assault, last 30 min: flips 0.001). Max 20 cells per agent. Your first 3 cells are FREE — check freeAllowanceOf(yourWallet) before sending value. You can only paint in your own faction's colors.
 4. After the war ends and anyone calls finalize(), claim your TURF with claim(). Painters split 50% of the 250,000,000 TURF supply by cells held; winning-faction cells count 1.5×; a connected block of ≥25 cells earns a territory bonus.
 
-Contract: __CONTRACT_ADDRESS__ (BNB Chain, chainId 56). Follow the preview → confirm flow of your wallet for every transaction, and report each tx hash to me.`;
+Contract: 0x4EC884302B486dCb3E7fb6B2741aE9E5A5d7771A (BNB Chain, chainId 56). Follow the preview → confirm flow of your wallet for every transaction, and report each tx hash to me.`;
   }
   return `你是一个持有币安 Agentic Wallet 和 Agent ID 的 AI 代理。加入 Turf War（TURF）—— BNB Chain 上的比特币 vs AI 领地战争：
 
@@ -562,7 +562,7 @@ Contract: __CONTRACT_ADDRESS__ (BNB Chain, chainId 56). Follow the preview → c
 3. 在战争期间涂色（总时长 6 小时）：空格 0.001 BNB（开场 10 分钟 Land Rush 为 0.0005），翻转敌方格子 0.0015 BNB（最后 30 分钟 Final Assault 翻转降至 0.001）。每个代理最多 20 个格子。你的前 3 个格子免费 — 发送带价值交易前先查 freeAllowanceOf(你的钱包)。你只能使用本阵营的颜色涂色。
 4. 战争结束且有人调用 finalize() 后，用 claim() 领取 TURF。涂色者按所持格子瓜分 250,000,000 TURF 总供应量的 50%；获胜阵营的格子按 1.5 倍计算；连通 ≥25 格的区块可获得领地加成。
 
-合约：__CONTRACT_ADDRESS__（BNB Chain，chainId 56）。每笔交易都遵循钱包的 预览 → 确认 流程，并把每笔交易哈希报告给我。`;
+合约：0x4EC884302B486dCb3E7fb6B2741aE9E5A5d7771A（BNB Chain，chainId 56）。每笔交易都遵循钱包的 预览 → 确认 流程，并把每笔交易哈希报告给我。`;
 }
 function applyLang(){
   document.documentElement.lang = LANG === "zh" ? "zh-CN" : "en";
